@@ -1,0 +1,13 @@
+div.container {
+	text-align: center;
+}
+
+button {
+	border: none;
+	background-image: url(../SB_collection.png);
+	background-repeat: no-repeat;
+}
+
+button.selected {
+	background-image: url(../SB_collection_selected.png);
+}
