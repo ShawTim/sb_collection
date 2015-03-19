@@ -6,6 +6,7 @@ button {
 	border: none;
 	background-image: url(../SB_collection.png);
 	background-repeat: no-repeat;
+	cursor: pointer;
 }
 
 button.selected {
