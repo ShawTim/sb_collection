@@ -1,4 +1,5 @@
 $.fn.loadCollection = function() {
+	var container = this;
 	var index = window.location.href.indexOf("#");
 	if (index >= 0) {
 		var collectionStr = window.location.href.substring(index+1);
@@ -7,7 +8,7 @@ $.fn.loadCollection = function() {
 			var row = collection >> 5;
 			var col = collection & 31;
 			for (var j=0; j<5; j++) {
-				$("div:nth-of-type(" + (row+1) + ") > button:nth-of-type(" + (j+1) + ")", this).toggleClass("selected", !!(col&(1<<j)));
+				$("div:nth-of-type(" + (row+1) + ") > button:nth-of-type(" + (j+1) + ")", container).toggleClass("selected", !!(col&(1<<j)));
 			}
 		});
 	}
