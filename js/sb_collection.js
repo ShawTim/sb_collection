@@ -31,6 +31,25 @@ $.fn.saveCollection = function() {
 	window.location.href = "#" + collection.substring(0, collection.length-1);
 };
 
+$.fn.exportCollection = function() {
+	var container = this.clone();
+	var canvas = $("<canvas>").attr({ width: container.width(), height: container.height() });
+	var div = $("<div>").append($("#css").clone()).append(container);
+	rasterizeHTML.drawHTML(div.html(), canvas[0]).then(function(result) {
+		console.log(result);
+		//$("body").append(canvas);
+		//$("body").append($(result.svg));
+		//$("body").append(result.image);
+
+		// temp soln for providing an image to save
+		var win = window.open();
+		$(win.document.body).append(result.image);
+	}, function(err) {
+		console.log(err);
+	});
+	//rasterizeHTML.drawHTML("<body style='padding: 0px'>" + div.html() + "</body>", canvas[0]);
+};
+
 $.fn.SBCollection = function() {
 
 	var container = this;
@@ -38,11 +57,12 @@ $.fn.SBCollection = function() {
 	$("<img>", { src: "./SB_collection_selected.png" }).load(function(e) {
 		var w = e.target.naturalWidth / 5;
 		var r = e.target.naturalHeight / w; 
+		container.css({ width: e.target.naturalWidth, height: e.target.naturalHeight });
 
 		for (var i=0; i<r; i++) {
-			var row = $("<div></div>");
+			var row = $("<div>", { "class": "row" });
 			for (var j=0; j<5; j++) {
-				$("<button></button>", {
+				$("<button>", {
 					css: {
 						width: w,
 						height: w,
