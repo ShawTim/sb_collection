@@ -1,14 +1,17 @@
-div.container {
-	text-align: center;
+.container {
+	margin: auto;
 }
 
 button {
 	border: none;
+}
+
+.container button {
 	background-image: url(../SB_collection.png);
 	background-repeat: no-repeat;
 	cursor: pointer;
 }
 
-button.selected {
+.container button.selected {
 	background-image: url(../SB_collection_selected.png);
 }
