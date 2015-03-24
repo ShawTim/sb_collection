@@ -1,17 +1,24 @@
+body {
+	padding: 0;
+	margin: 0;
+}
+svg {
+	font-kerning: normal;
+}
 .container {
 	margin: auto;
 }
-
-button {
-	border: none;
+.action_panel {
+	margin: auto;
+	text-align: center;
+	margin-top: 20px;
 }
-
 .container button {
+	border: none;
 	background-image: url(../SB_collection.png);
 	background-repeat: no-repeat;
 	cursor: pointer;
 }
-
 .container button.selected {
 	background-image: url(../SB_collection_selected.png);
 }
