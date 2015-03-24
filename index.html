@@ -2,34 +2,10 @@
 	<head>
 		<meta charset="utf-8"/>
 		<title>Summons Board Collection</title>
-		<style id="css" type="text/css">
-			body {
-				padding: 0;
-				margin: 0;
-			}
-			svg {
-				font-kerning: normal;
-			}
-			.container {
-				margin: auto;
-			}
-			.action_panel {
-				margin: auto;
-				text-align: center;
-				margin-top: 20px;
-			}
-			.container button {
-				border: none;
-				background-image: url(./SB_collection.png);
-				background-repeat: no-repeat;
-				cursor: pointer;
-			}
-			.container button.selected {
-				background-image: url(./SB_collection_selected.png);
-			}
-		</style>
+		<link href="./css/collection.css" rel="stylesheet">
 		<script src="./js/jquery-1.11.2.min.js"></script>
 		<script src="./js/rasterizeHTML.allinone.js"></script>
+		<script src="./js/html2canvas.js"></script>
 		<script src="./js/sb_collection.js"></script>
 		<script>
 			$(document).ready(function() {

@@ -32,6 +32,17 @@ $.fn.saveCollection = function() {
 };
 
 $.fn.exportCollection = function() {
+	html2canvas(this, {
+		onrendered: function(canvas) {
+			var data = canvas.toDataURL();
+			var img = $("<img>", { src: data });
+			var win = window.open();
+			$(win.document.body).append(img);
+		}
+	});
+};
+
+$.fn.exportCollection1 = function() {
 	var container = this.clone();
 	var canvas = $("<canvas>").attr({ width: container.width(), height: container.height() });
 	var div = $("<div>").append($("#css").clone()).append(container);
@@ -47,7 +58,6 @@ $.fn.exportCollection = function() {
 	}, function(err) {
 		console.log(err);
 	});
-	//rasterizeHTML.drawHTML("<body style='padding: 0px'>" + div.html() + "</body>", canvas[0]);
 };
 
 $.fn.SBCollection = function() {
