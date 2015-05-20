@@ -15,10 +15,18 @@ svg {
 }
 .container button {
 	border: none;
-	background-image: url(../SB_collection.png);
 	background-repeat: no-repeat;
 	cursor: pointer;
 }
-.container button.selected {
-	background-image: url(../SB_collection_selected.png);
+.container button.original {
+	background-image: url(../SB_collection_org.png);
+}
+.container button.collaboration {
+	background-image: url(../SB_collection_coll.png);
+}
+.container button.original.selected {
+	background-image: url(../SB_collection_org_selected.png);
+}
+.container button.collaboration.selected {
+	background-image: url(../SB_collection_coll_selected.png);
 }

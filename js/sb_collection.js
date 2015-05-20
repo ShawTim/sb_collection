@@ -64,15 +64,12 @@ $.fn.SBCollection = function() {
 
 	var container = this;
 
-	$("<img>", { src: "./SB_collection_selected.png" }).load(function(e) {
-		var w = e.target.naturalWidth / 5;
-		var r = e.target.naturalHeight / w; 
-		container.css({ width: e.target.naturalWidth, height: e.target.naturalHeight });
-
+	var appendRow = function(container, w, r, btnClass) {
 		for (var i=0; i<r; i++) {
 			var row = $("<div>", { "class": "row" });
 			for (var j=0; j<5; j++) {
 				$("<button>", {
+					"class": btnClass,
 					css: {
 						width: w,
 						height: w,
@@ -86,6 +83,20 @@ $.fn.SBCollection = function() {
 			}
 			container.append(row);
 		}
-		container.loadCollection();
+	};
+
+	$("<img>", { src: "./SB_collection_org_selected.png" }).load(function(e) {
+		var w = e.target.naturalWidth / 5;
+		var r = e.target.naturalHeight / w; 
+		var containerW = e.target.naturalWidth;
+		var containerH = e.target.naturalHeight;
+
+		appendRow(container, w, r, "original");
+		$("<img>", { src: "./SB_collection_coll_selected.png" }).load(function(e) {
+			r = e.target.naturalHeight / w; 
+			container.css({ width: containerW, height: containerH+e.target.naturalHeight });
+			appendRow(container, w, r, "collaboration");
+			container.loadCollection();
+		});
 	});
 };
