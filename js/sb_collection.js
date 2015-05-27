@@ -5,10 +5,18 @@ $.fn.loadCollection = function() {
 		var collectionStr = window.location.href.substring(index+1);
 		var collections = collectionStr.split(",");
 		$(collections).each(function(i, collection) {
+			var clazz = "";
+			if (collection.charAt(0) == 'c') {
+				collection = collection.substring(1);
+				clazz = "collaboration";
+			} else {
+				clazz = "original";
+			}
+console.log(collection, clazz);
 			var row = collection >> 5;
 			var col = collection & 31;
 			for (var j=0; j<5; j++) {
-				$("div:nth-of-type(" + (row+1) + ") > button:nth-of-type(" + (j+1) + ")", container).toggleClass("selected", !!(col&(1<<j)));
+				$("div.row." + clazz + ":eq(" + (row) + ") > button:eq(" + j + ")", container).toggleClass("selected", !!(col&(1<<j)));
 			}
 		});
 	}
@@ -17,13 +25,24 @@ $.fn.loadCollection = function() {
 $.fn.saveCollection = function() {
 	var collection = "";
 	var selected = 0;
-	$("button", this).each(function(i, button) {
+	$("button.original", this).each(function(i, button) {
 		var cur = $(button).hasClass("selected") ? 1 : 0;
 		selected |= cur << (i%5);
 		if (i % 5 == 4) {
 			if (selected) {
 				selected |= (i/5) << 5;
 				collection += selected + ",";
+			}
+			selected = 0;
+		}
+	});
+	$("button.collaboration", this).each(function(i, button) {
+		var cur = $(button).hasClass("selected") ? 1 : 0;
+		selected |= cur << (i%5);
+		if (i % 5 == 4) {
+			if (selected) {
+				selected |= (i/5) << 5;
+				collection += "c" + selected + ",";
 			}
 			selected = 0;
 		}
@@ -64,15 +83,12 @@ $.fn.SBCollection = function() {
 
 	var container = this;
 
-	$("<img>", { src: "./SB_collection_selected.png" }).load(function(e) {
-		var w = e.target.naturalWidth / 5;
-		var r = e.target.naturalHeight / w; 
-		container.css({ width: e.target.naturalWidth, height: e.target.naturalHeight });
-
+	var appendRow = function(container, w, r, clazz) {
 		for (var i=0; i<r; i++) {
-			var row = $("<div>", { "class": "row" });
+			var row = $("<div>", { "class": "row " + clazz });
 			for (var j=0; j<5; j++) {
 				$("<button>", {
+					"class": clazz,
 					css: {
 						width: w,
 						height: w,
@@ -86,6 +102,20 @@ $.fn.SBCollection = function() {
 			}
 			container.append(row);
 		}
-		container.loadCollection();
+	};
+
+	$("<img>", { src: "./SB_collection_org_selected.png" }).load(function(e) {
+		var w = e.target.naturalWidth / 5;
+		var r = e.target.naturalHeight / w; 
+		var containerW = e.target.naturalWidth;
+		var containerH = e.target.naturalHeight;
+
+		appendRow(container, w, r, "original");
+		$("<img>", { src: "./SB_collection_coll_selected.png" }).load(function(e) {
+			r = e.target.naturalHeight / w; 
+			container.css({ width: containerW, height: containerH+e.target.naturalHeight });
+			appendRow(container, w, r, "collaboration");
+			container.loadCollection();
+		});
 	});
 };
