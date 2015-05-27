@@ -1,21 +1,34 @@
 body {
 	padding: 0;
 	margin: 0;
+	background: url("../bg_pat.jpg") repeat scroll 0 0 #999;
+	font-family: Meiryo,"メイリオ","ヒラギノ角ゴ ProN W3",Arial,Helvetica,sans-serif,Osaka;
 }
 svg {
 	font-kerning: normal;
+}
+.main {
+	background: url("../bg_main.jpg") no-repeat scroll top center / 1249px 910px rgba(0, 0, 0, 0);
+	padding-top: 50px;
 }
 .header {
 	height: 73px;
 	width: 320px;
 	background-image: url(../logo.png);
 	background-repeat: no-repeat;
-	margin: 20px auto;
+	margin: auto;
+}
+.body {
+	display: flex;
 }
 .footer {
 	font-size: small;
 	text-align: center;
 	color: #a09f9f;
+}
+.sidebar {
+	width: 129px;
+	background-image: url(../objects.png);
 }
 .container {
 	margin: auto;
