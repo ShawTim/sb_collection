@@ -26,9 +26,24 @@ svg {
 	text-align: center;
 	color: #a09f9f;
 }
-.sidebar {
-	width: 129px;
-	background-image: url(../objects.png);
+.footer > div {
+	display: flex;
+	justify-content: center;
+}
+@media (min-width:1024px) {
+	.sidebar1 {
+		position: absolute;
+		left: 50px;
+		top: 200px;
+	}
+	.sidebar1 > iframe {
+		min-width: 250px!important;
+	}
+}
+@media (max-width:1024px) {
+	.sidebar1 {
+		display: none;
+	}
 }
 .container {
 	margin: auto;
@@ -42,7 +57,6 @@ svg {
 	padding: 0;
 }
 #export li, #share li {
-	cursor: pointer;
 	background-color: #f4e4b3;
 	border: 3px solid #967f5e;
 	border-radius: 30px;
@@ -56,6 +70,20 @@ svg {
 	color: #936c3f;
 	text-decoration: none;
 	width: 20%;
+}
+#export {
+	cursor: pointer;
+	position: relative;
+}
+#export > img {
+	position: absolute;
+	left: 10px;
+	top: -24px;
+	transition: all 1s ease;
+}
+#export > img:hover {
+	transform: scale(1.2) rotate(-360deg);
+	transition: all 1s ease;
 }
 #share {
 display: none;
