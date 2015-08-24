@@ -38,6 +38,7 @@ svg {
 	}
 	.sidebar1 > iframe {
 		min-width: 250px!important;
+		width: 250px!important;
 	}
 }
 @media (max-width:1024px) {
